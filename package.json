@@ -1,1 +1,0 @@
-{"name":"ai-elearning-platform","version":"1.0.0","scripts":{"start":"node ai-elearning/index.js","build":"echo no-build"}}
