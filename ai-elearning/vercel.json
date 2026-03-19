@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ai-elearning/client/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "ai-elearning/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "ai-elearning/index.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "ai-elearning/client/dist/index.html" }
+  ]
+}

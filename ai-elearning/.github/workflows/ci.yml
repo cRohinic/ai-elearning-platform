@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm install
+
+      - name: Install server deps
+        run: cd server && npm install
+
+      - name: Install client deps
+        run: cd client && npm install
+
+      - name: Build client
+        run: cd client && npm run build
+
+  deploy:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy server to Railway
+        run: |
+          echo "Add Railway CLI deploy command here"
+          # railway up --service server
+
+      - name: Deploy client to Vercel
+        run: |
+          echo "Add Vercel CLI deploy command here"
+          # vercel --prod
