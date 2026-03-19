@@ -8,8 +8,8 @@
     "server:dev": "cd server && npm run dev",
     "client:dev": "cd client && npm run dev",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm start"
+   "build": "echo no-build",
+    "start": "node index.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
